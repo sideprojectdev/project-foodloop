@@ -1,7 +1,7 @@
 {
-  "name": "foodloop",
+  "name": "foodloop2",
   "version": "1.0.0",
-  "description": "",
+  "description": "haha",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,9 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.13.1",
-    "nonce": "^1.0.3",
-    "oauth-signature": "^1.3.1",
-    "request": "^2.72.0"
+    "yelp": "^1.0.1"
   }
 }
