@@ -7,8 +7,7 @@
 <button onclick="getLocation()">Try It</button>
 
 <p id="demo"></p>
-<script type="text/javascript" src="Users/qhyu/Documents/CSC\ -\ Computer\ Science/sideprojectdev/project-foodloop.git/trunk/foodloop/node_modules/yelp/lib/index.js  
-" ></script>
+<script type="text/javascript" src="run.js  " ></script>
 <script>
 var x = document.getElementById("demo");
 
@@ -24,39 +23,6 @@ function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude;
 }
-
-function searchBasedOnPos(position) {
-
-	var lat = position.coords.latitude;
-	var logi = position.coords.longitude;
-
-
-	var yelp = new Yelp({
-		consumer_key: '7y4oQGiNy2LJmLws2PmpgA',
-		consumer_secret: 'kofl0SYvJ_zqqrE9E9JEffOdQrE',
-		token: 'XGnADVk6eVQ5i9XVTNlAdclRkBrai77x',
-		token_secret: 'myJUtq6VRKy16NgSCsIJKMCRgKE',
-	});
-
-	var Yelp = require('yelp');
-
-	// See http://www.yelp.com/developers/documentation/v2/search_api
-	var off = String(Math.round(Math.random() * 500));
-	yelp.search({ term: 'restaurant', limit: '1', offset: off,
-				bounds: String(lat - 0.01) + ',' + String(logi - 0.01) + '|' +
-				String(lat + 0.01) + ',' + String(logi + 0.01)})
-	.then(function (data) {
-		var len = data.businesses.length
-		for(var i = 0; i < len; i++) {
-			x.innerHTML = data.businesses[i].name;
-		}
-		console.log('----------------------------------------');
-	})
-	.catch(function (err) {
-		console.error(err);
-	});
-}
-
 </script>
 
 </body>
