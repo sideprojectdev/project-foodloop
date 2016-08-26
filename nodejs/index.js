@@ -5,7 +5,7 @@ var requestHandlers = require("./requestHandlers");
 var handle = {}
 handle[""] = requestHandlers.init;
 handle["/"] = requestHandlers.init;
-handle["/posNow"] = requestHandler.posNow;
+handle["/posNow"] = requestHandlers.posNow;
 handle["/default"] = requestHandlers.def;
 
 server.start(router.route, handle); 

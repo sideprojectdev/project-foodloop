@@ -4,6 +4,8 @@ function init(response){
     html += '<p> Welcome to foodloop 0.0.1 beta!</p>';
     html += '<a href=http://localhost:3000/result>default position</a>';
     html += '<p></p>';
+    html += '<a href=http://localhost:3000/posNow>geolocation</a>';
+    html += '<p></p>';
     html += '</body></html>';
     response.write(html);
     response.end();

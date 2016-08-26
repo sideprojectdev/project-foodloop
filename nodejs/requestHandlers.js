@@ -1,20 +1,20 @@
-var Geolocation = require("Geolocation");
+var navigator = require("navigator");
 var searchBasedOnPos = require("./searchBasedOnPos").searchBasedOnPos;
 var website = require("./website");
 
 function posNow(response){
     console.log("Request handler 'posNow' was called.");
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(searchBasedOnPos);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
+    var positionllll = navigator.geolocation;
+    if(positionllll){
+        searchBasedOnPos(positionllll, response);
+    } else{
+        website.result("Geolocation failed", response);
     }
 }
 function init(response){
     console.log("Request handler 'init' was called.");
     website.init(response);
+    //return "init";
 }
 function def(response){
     console.log("Request handler 'def' was called.");
@@ -22,7 +22,7 @@ function def(response){
     var positionllll = {coords: coord};
     var restauranto = searchBasedOnPos(positionllll, response);
     
-    return restauranto;
+    //return restauranto;
 }
 exports.init = init;
 exports.posNow = posNow;
