@@ -1,23 +1,55 @@
-var coord = {latitude: 43.65860098525407, longitude: -79.39782458347145};
+var http = require("http");
+//var url = require("url");
+/*
+function start(route) {
+    http.createServer(function(request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+
+        route(pathname);
+
+        console.log("request received.");
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("Hello World");
+        response.end();
+        }).listen(8888);
+    console.log("server has started.");
+}
+
+exports.start = start;
+*/
+
+//function start(){
+    http.createServer(func).listen(3000);
+    console.log('Example app listening on port 3000!');
+//}
+
+function func(request, response){
+    var coord = {latitude: 43.65860098525407, longitude: -79.39782458347145};
+    var positionllll = {coords: coord};
+    var restauranto = searchBasedOnPos(positionllll, response);
+}
+/*var coord = {latitude: 43.65860098525407, longitude: -79.39782458347145};
 var positionllll = {coords: coord};
 var restauranto = searchBasedOnPos(positionllll);
-console.log(restauranto);
-while (restauranto === undefined) {
+//console.log(restauranto);
+while (restauranto === undefined) {					//CHANGE!
 	restauranto = searchBasedOnPos(positionllll);
 }
-console.log(restauranto);
-var express = require('express');
+//console.log(restauranto);
+*/
+/*var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
   res.send(restauranto);
+  console.log("what's this?");
 });
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
-});
-
-function searchBasedOnPos(position) {
+});*/
+function searchBasedOnPos(position, response) {
 	var lat = position.coords.latitude;
 	var logi = position.coords.longitude;
 
@@ -41,9 +73,19 @@ function searchBasedOnPos(position) {
 			a = data.businesses[0].name;
 		}
 		console.log('returning');
+		//console.log(a);
+        response.writeHead(200, {"Content-Type": "text/html"});
+        var html = '<!DOCTYPE html><html><head><title>My Title</title></head><body>';
+        html += '<p>' + a + '</p>';
+        html += '</body></html>';
+        response.write(html);
+        response.end();
 		return a;
 	})
 	.catch(function (err) {
 		console.error(err);
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("ERROR");
+        response.end();
 	});
 }
