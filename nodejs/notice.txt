@@ -1,0 +1,3 @@
+nodejs代码是non-blocking的，所以return和subfunction会同时进行。return速度快，先执行完毕，所以return了undefined。
+可以使用eventloop
+有点像258的
