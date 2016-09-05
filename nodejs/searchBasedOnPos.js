@@ -20,12 +20,17 @@ function searchBasedOnPos(position, response) {
 				String(lat + 0.01) + ',' + String(logi + 0.01)})
 	.then(function (data) {
 		var a = data.businesses[0].name;
-		while (a === undefined) {
+		/*while (a === undefined) {
 			a = data.businesses[0].name;
-		}
+		}*/
 		console.log('returning');
 		//console.log(a);
-        website.result(a, response);
+		if(a === undefined){
+			website.error(response);
+		}
+		else{
+        	website.result(data, response);
+		}
 		return a;
 	})
 	.catch(function (err) {

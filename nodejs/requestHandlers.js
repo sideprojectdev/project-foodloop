@@ -1,15 +1,29 @@
 var navigator = require("navigator");
+var geolocation = require("geolocation");
+var flow = require('nimble');
 var searchBasedOnPos = require("./searchBasedOnPos").searchBasedOnPos;
 var website = require("./website");
 
 function posNow(response){
     console.log("Request handler 'posNow' was called.");
-    var positionllll = navigator.geolocation;
-    if(positionllll){
-        searchBasedOnPos(positionllll, response);
-    } else{
-        website.result("Geolocation failed", response);
+
+    navigator.geolocation(function (positionllll){
+        if(positionllll){
+            searchBasedOnPos(positionllll.getCurrentPosition, response);
+        } else{
+            website.result("Geolocation failed", response);
+        }
+    })
+/*
+
+        var positionllll = navigator.geolocation, 
+        if(positionllll){
+            searchBasedOnPos(positionllll.getCurrentPosition, response);
+        } else{
+            website.result("Geolocation failed", response);
     }
+    //console.log(navigator.geolocation.getCurrentPosition());
+    */
 }
 function init(response){
     console.log("Request handler 'init' was called.");
