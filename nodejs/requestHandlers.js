@@ -6,14 +6,20 @@ var website = require("./website");
 
 function posNow(response){
     console.log("Request handler 'posNow' was called.");
-
-    navigator.geolocation(function (positionllll){
-        if(positionllll){
-            searchBasedOnPos(positionllll.getCurrentPosition, response);
-        } else{
-            website.result("Geolocation failed", response);
-        }
-    })
+    if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function (positionllll){
+            if(positionllll){
+                searchBasedOnPos(positionllll.getCurrentPosition, response);
+            } else{
+                website.error(response);
+            }
+        })
+    }
+    else{
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write("CRITICAL ERROR");
+        response.end(); 
+    }
 /*
 
         var positionllll = navigator.geolocation, 
