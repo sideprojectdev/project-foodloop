@@ -13,9 +13,12 @@ function init(response){
 function result(data, response){
     response.writeHead(200, {"Content-Type": "text/html"});
     var html = '<!DOCTYPE html><html><head><style>#map{width: 100%; height: 400px;}</style></head><body><div id="map"></div><script>';
-    html += "function initMap(){var mapDiv=document.getElementById('map');var map = new google.maps.Map(mapDiv, {center:{lat:"
-    + data.businesses[0].location.coordinate.latitude + ", lng: " + data.businesses[0].location.coordinate.longitude
-    +"}, zoom:20});}</script>";
+    html += "function initMap(){var position = {lat:"
+    + data.businesses[0].location.coordinate.latitude + ", lng: "
+    + data.businesses[0].location.coordinate.longitude
+    +"};var mapDiv=document.getElementById('map');var map = new google.maps.Map(mapDiv, {center: position, zoom:16});var marker = new google.maps.Marker({position: position, map: map, title: '"
+    + data.businesses[0].name
+    +"'});}</script>";
     html += '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkak3oeJ5I5p9-5GEVZ6YsXs78angDdbw&callback=initMap"></script>';
     html += '<p>' + data.businesses[0].name + '</p>';
     html += '<p> Back to <a href=http://localhost:3000>Home Page</a></p>';
